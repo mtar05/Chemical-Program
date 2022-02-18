@@ -1,6 +1,8 @@
 import turtle as t
 import os
 from tkinter import *
+import tkinter.messagebox as tk_messagebox
+import convertapi
 
 class ChemProgram():
     def __init__(chem_object) -> None:
@@ -122,7 +124,9 @@ class ChemProgram():
 
                 t.pendown()
         t.hideturtle()
-        chem_object.turtle_screen = t.getscreen()
+        turtle_screen = t.getscreen()
+        os.chdir(chem_object.output_path)
+        turtle_screen.getcanvas().postscript(file = "chem.eps")
         t.done()
         return
 
@@ -131,15 +135,20 @@ class ChemProgram():
         colic_angle = len(chem_object.chemical_list)
         colic_angle = colic_angle - 1
         print(colic_angle)
-        t.bgcolor("black")
-        t.color("white")
+        #t.bgcolor("black")
+        #t.color("white")
         t.penup()
         t.goto(-150, -300)
         t.pendown()
         first_angle = t.heading()
         for lists in chem_object.chemical_list:
             t.forward(150)
-            t.left(360 / colic_angle)
+            try:
+                t.left(360 / colic_angle)
+            except ZeroDivisionError:
+                tk_messagebox.showerror(
+                    title="Can not devide by zero!", message="Please enter valid details.")
+                return
             position = t.position()
             angle = t.heading()
             for string in lists:
@@ -186,7 +195,9 @@ class ChemProgram():
             t.setheading(angle)
             t.pendown()
         t.hideturtle()
-        chem_object.turtle_screen = t.getscreen()
+        turtle_screen = t.getscreen()
+        os.chdir(chem_object.output_path)
+        turtle_screen.getcanvas().postscript(file = "chem.eps")
         t.done()
         return
 
@@ -200,4 +211,10 @@ class ChemProgram():
     
 
     def save_image(chem_object):
-        chem_object.turtle_screen.getcanvas().postscript(file = "chem.eps")
+        file_path = chem_object.output_path + "/chem.eps"
+        convertapi.api_secret = 'wHkfkm9XjAx5x8LN'
+        convertapi.convert('png', {
+            'File': file_path
+        }, from_format = 'eps').save_files(chem_object.output_path)
+        print("Saved, goodbye!")
+        return

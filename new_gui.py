@@ -38,7 +38,7 @@ class MyGui():
    
 
     def know_more_clicked(gui_object):
-        instructions = "https://www.google.cz/search?q="
+        instructions = "https://github.com/mtar05/Chemical-Program"
         webbrowser.open_new_tab(instructions)
 
 
@@ -74,21 +74,21 @@ class MyGui():
         global cyklo_or_not
         cyklo_or_not = tk.StringVar()
         cyklo_or_not_entry = tk.Entry(bd=0, bg="#fafafa", highlightthickness=0, text="yes/no", textvariable=cyklo_or_not)
-        cyklo_or_not_entry.place(x=490.0, y=96+25, width=321.0, height=35)
+        cyklo_or_not_entry.place(x=490.0, y=76+25, width=321.0, height=55)
 
         global chem_formula
         chem_formula = tk.StringVar()
         Chemical_Formula = tk.Entry(bd=0, bg="#fafafa", highlightthickness=0, textvariable=chem_formula)
-        Chemical_Formula.place(x=490.0, y=177+25, width=321.0, height=35)
+        Chemical_Formula.place(x=490.0, y=157+25, width=321.0, height=55)
 
         global chem_name
         chem_name = tk.StringVar()
         Name_of_Compound = tk.Entry(bd=0, bg="#fafafa", highlightthickness=0, textvariable=chem_name)
-        Name_of_Compound.place(x=490.0, y=258+25, width=321.0, height=35)
+        Name_of_Compound.place(x=490.0, y=238+25, width=321.0, height=55)
 
         global path_entry
         path_entry = tk.Entry(bd=0, bg="#fafafa", highlightthickness=0)
-        path_entry.place(x=490.0, y=339+25, width=321.0, height=35)
+        path_entry.place(x=490.0, y=329+25, width=321.0, height=35)
 
         path_picker_img = tk.PhotoImage(file = ASSETS_PATH / "path_picker.png")
         path_picker_button = tk.Button(
@@ -154,8 +154,8 @@ class MyGui():
             "using Tkinter Designer.",
             bg="#fac618", fg="white", justify="left",
             font=("Georgia", int(12.0)))
-
         info_text.place(x=27.0, y=100.0)
+
         """
         "Chemical program uses python turtle\n"
         "to draw chemical structures of organic\n"
