@@ -34,6 +34,6 @@ def main():
             title="Something went wrong!", message="Please try it again.")
         return
     
-    ChemProgram.save_image(chem_object)
+    #ChemProgram.save_image(chem_object)
 
 main()

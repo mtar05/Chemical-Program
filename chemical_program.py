@@ -1,3 +1,4 @@
+from string import ascii_lowercase
 import turtle as t
 import os
 from tkinter import *
@@ -78,9 +79,14 @@ class ChemProgram():
             for chars in chem_object.chem_formula:
 
                 if chars.isalpha():
-                    number_of_lists = len(chem_object.chemical_list)
-                    chem_object.position_chars.append((chars, number_of_lists))
-                    chem_object.chemical_list[number_of_lists - 1].append(chars)
+                    if chars in ascii_lowercase:
+                        number_of_lists = len(chem_object.chemical_list)
+                        chem_object.position_chars.append((chars, number_of_lists))
+                        chem_object.chemical_list[number_of_lists - 1].append(chars)
+                    else:
+                        number_of_lists = len(chem_object.chemical_list)
+                        chem_object.position_chars.append((chars, number_of_lists))
+                        chem_object.chemical_list[number_of_lists - 1].append(chars)
 
                 elif chars.isnumeric():
                     l = len(chem_object.position_chars) - 1
@@ -100,8 +106,8 @@ class ChemProgram():
             
 
     def turtle_writer(chem_object):
-        t.bgcolor("black")
-        t.color("white")
+        #t.bgcolor("black")
+        #t.color("white")
         t.penup()
         t.goto(-350, 0)
         t.pendown()
@@ -158,7 +164,7 @@ class ChemProgram():
                     t.setheading(first_angle)
                     t.write(string, font = style, align = "left")
                     t.penup()
-                    t.forward(40)
+                    t.forward(30)
                     t.pendown()
                     
                 elif string == "=":
